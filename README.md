@@ -45,7 +45,7 @@ npm run preview
 
 ## Links uteis e documentações utilizadas:
 
-[deployment documentation](https://nuxt.com/docs/getting-started/deployment)
-[Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction)
-[Font Awesome](https://docs.fontawesome.com/web/use-with/vue/use-with/#nuxt)
-[Tailwind CSS](https://tailwindcss.com/docs/guides/nuxtjs)
+- [deployment documentation](https://nuxt.com/docs/getting-started/deployment)
+- [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction)
+- [Font Awesome](https://docs.fontawesome.com/web/use-with/vue/use-with/#nuxt)
+- [Tailwind CSS](https://tailwindcss.com/docs/guides/nuxtjs)
