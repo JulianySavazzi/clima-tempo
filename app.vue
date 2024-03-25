@@ -1,51 +1,101 @@
 <script setup>
 
+const runtime = useRuntimeConfig()
+const local = ref()
+
+async function searchLocal(){
+  console.log(local.value)
+  const request = await $fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local.value}&units=metric&appid=${runtime.public.API_KEY}`)
+  console.log(request)
+}
+
 </script>
 
 <template>
-  <main
-    class="flex items-center justify-center bg-blue-900">
-
-  <div class="container relative bg-white py-28 px-32 overflow-hidden rounded-xl  ">
-    <!--<font-awesome-icon :icon="['fas', 'location-dot']" />-->
-    <div class="search-box">
-      <font-awesome-icon icon="fa-solid fa-location-dot" class="absolute text-gray-900 text-3xl"/>
-      <input type="text" placeholder="insira o local" class="text-gray-900 w-4/5 text-1xl font-medium pl-8"/>
-      <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="cursor-pointer w-12 text-gray-900 text-3xl bg-blue-100 rounded-full"/>
+  <main class="">
+    <div class="container">
+      <div class="search-box">
+        <font-awesome-icon icon="fa-solid fa-location-dot" class="icon"/>
+        <input type="text" v-model="local" placeholder="insira o local" class=""/>
+        <div id="search-local"
+          @click="searchLocal"
+          class="button-container">
+          <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="button"/>
+        </div>
+      </div>
     </div>
-
-  </div>
   </main>
 </template>
 
 <style lang="postcss" scoped>
-
 *{
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
   outline: none;
-  border: 0;
 }
-
 main{
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #06283d;
 }
-
 .container{
+  position: relative;
   width: 400px;
   height: 105px;
+  background: #fff;
+  padding: 28px 32px;
+  overflow: hidden;
+  border-radius: 18px;
+  font-family: 'Roboto', sans-serif;
   transition: 0.6s ease-out;
 }
-
 .search-box{
   width: 100%;
-  margin: 5%;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
-.search-box::placeholder{
+.search-box input{
+  color: #06283D;
+  width: 80%;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-left: 32px;
+}
+.search-box input::placeholder{
   font-size: 20px;
+  font-weight: 500;
+  color: #06283D;
   text-transform: capitalize;
 }
-
+.button-container{
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: #dff6ff;
+  border-radius: 50%;
+  transition: 0.4s ease;
+}
+.button-container:hover{
+  background: #06283D;
+}
+.button{
+  color: #06283D;
+  font-size: 22px;
+  padding: 25%;
+}
+.button:hover{
+  color: #fff;
+}
+.icon{
+  position: absolute;
+  color: #06283D;
+  font-size: 28px;
+}
 </style>

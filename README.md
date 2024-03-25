@@ -49,3 +49,4 @@ npm run preview
 - [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction)
 - [Font Awesome](https://docs.fontawesome.com/web/use-with/vue/use-with/#nuxt)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/nuxtjs)
+- [OpenWeather API](https://openweathermap.org/api)
