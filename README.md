@@ -9,9 +9,7 @@
 
 ### Nuxt 3 Minimal Starter
 
-Look at the  to learn more.
-
-### Setup
+#### Setup
 
 Make sure to install the dependencies:
 
@@ -20,7 +18,7 @@ Make sure to install the dependencies:
 npm install
 ```
 
-### Development Server
+#### Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -29,7 +27,7 @@ Start the development server on `http://localhost:3000`:
 npm run dev
 ```
 
-### Production
+#### Production
 
 Build the application for production:
 
