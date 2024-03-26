@@ -1,45 +1,43 @@
 <script setup>
-
 const runtime = useRuntimeConfig()
 const state = reactive({
   hasError: false,
+  hasResponse: false,
   local: "",
   response: {}
 })
 
 async function searchLocal(){
   state.hasError = false
-  await $fetch(`https://api.openweathermap.org/data/2.5/weather?q=${state.local}&units=metric&appid=${runtime.public.API_KEY}`)
-  .then(response => {
-    console.log("RESPONSE ", response)
-    console.log("City ", response.name)
-    console.log("cod ", response.cod)
-    console.log("Error state: ", state.hasError)
+  state.hasResponse = false
+  await $fetch(`https://api.openweathermap.org/data/2.5/weather?q=${state.local}&units=metric&appid=${runtime.public.API_KEY}`).then(response => {
+    state.hasResponse = true
     state.response = {
       name: response.name,
       temperature: response.main.temp,
-      min: response.main.temp_min,
-      max: response.main.temp_max,
-      feel: response.main.feels_like,
       humidity: response.main.humidity,
-      weather_descript: response.wheather.description,
-      weather: response.wheather.main,
-      clouds: response.clouds.all,
+      description: response.weather[0].description,
       wind: response.wind.speed
     }
   })
   .catch(error => {
-    state.hasError = true
-    console.log("Error state: ", state.hasError)
-    if(!error.status){
-      throw new Error('Erro na requisição')
-    } else{
-      if(error.status === 404){
-        throw new Error('City Not Found')
-      }
+    if(error.status != 200){
+      state.hasError = true
+      if(error.status){
+        if(error.status === 404){
+          throw new Error('City Not Found')
+        }
+        if(error.status === 401){
+          throw new Error('Unauthorized')
+        }
+        if(error.status === 400){
+          throw new Error('Bad request')
+        }
+      } else {
+          throw new Error('Erro na requisição')
+        }
     }
   })
-
 }
 </script>
 
@@ -58,34 +56,32 @@ async function searchLocal(){
       </div>
       <!--cidade nao encontrada-->
       <div
-        v-if="state.hasError"
+        v-if="state.hasError && !state.hasResponse"
         class="not-found">
         <img class="py-5" src="/images/404.png" alt="imagem de local não encontrado">
         <p class="pt-10">Ooops! O local não foi encontrado....</p>
       </div>
       <!--previsao do tempo -->
-      <div v-if="!state.hasError">
+      <div v-if="state.hasResponse ">
         <div class="weather-box">
-
           <img src="" alt="previsão do tempo"/>
-          <p class="temperature">{{state.response.temperature}}</p>
-          <p class="description">{{state.response.name}} </p>
+          <p class="temperature">{{ state.response.temperature }}</p>
+          <p class="description">{{ state.response.description }}</p>
         </div>
         <div class="weather-details">
-
           <div class="humidity">
             <font-awesome-icon icon="fa-solid fa-water" class="icon"/>
           </div>
           <div class="text">
-            <span></span>
-            <p>Humidity {{state.response.humidity}}</p>
+            <span>{{ state.response.humidity }}</span>
+            <p class="">Humidity</p>
           </div>
 
           <div class="wind">
             <font-awesome-icon icon="fa-solid fa-wind" class="icon"/>
             <div class="text">
-              <span></span>
-              <p>Wind Speed {{state.response.wind}}</p>
+              <span>{{ state.response.wind }}</span>
+              <p class="">Wind Speed</p>
             </div>
           </div>
         </div>
@@ -165,9 +161,8 @@ main{
   color: #06283D;
   font-size: 28px;
 }
-.not-found{
-
-}
+/*.not-found{*/
+/*}*/
 .weather-box{
   text-align: center;
 }
@@ -199,4 +194,9 @@ main{
   text-transform: capitalize;
 }
 
+.text{
+  padding-left: 34px;
+  color: #06283D;
+  font-size: 18px;
+}
 </style>
