@@ -78,9 +78,9 @@ async function searchLocal(){
       <!--cidade nao encontrada-->
       <div
         v-if="state.hasError && !state.hasResponse"
-        class="not-found">
+        class="not-found flex grid grid-cols-1 y-2/5 items-center justify-center content-center place-items-center place-content-center">
         <img class="py-5" src="/images/404.png" alt="imagem de local não encontrado">
-        <p class="">Ooops! O local não foi encontrado....</p>
+        <p class="text-base">Ooops! This local {{state.local}} not found....</p>
         <p class="text-xs">{{ state.errorMessage }}</p>
       </div>
       <!--previsao do tempo -->
