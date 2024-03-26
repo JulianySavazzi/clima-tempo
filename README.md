@@ -50,3 +50,4 @@ npm run preview
 - [Font Awesome](https://docs.fontawesome.com/web/use-with/vue/use-with/#nuxt)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/nuxtjs)
 - [OpenWeather API](https://openweathermap.org/api)
+- [Como utilizar o fetch](https://www.dio.me/articles/como-utilizar-o-metodo-fetch)
