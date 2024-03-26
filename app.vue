@@ -17,7 +17,20 @@ async function searchLocal(){
       temperature: response.main.temp,
       humidity: response.main.humidity,
       description: response.weather[0].description,
-      wind: response.wind.speed
+      wind: response.wind.speed,
+      image: ""
+    }
+    switch(response.weather[0].main){
+      case "Clouds": state.response.image = "/images/cloud.png"
+      break
+      case "Rain": state.response.image = "/images/rain.png"
+      break
+      case "Mist": state.response.image = "/images/mist.png"
+      break
+      case "Clear": state.response.image = "/images/clear.png"
+      break
+      case "Snow": state.response.image = "/images/snow.png"
+      break
     }
   })
   .catch(error => {
@@ -64,7 +77,7 @@ async function searchLocal(){
       <!--previsao do tempo -->
       <div v-if="state.hasResponse ">
         <div class="weather-box">
-          <img src="" alt="previsão do tempo"/>
+          <img :src="state.response.image" alt="previsão do tempo"/>
           <p class="temperature">{{ state.response.temperature }}</p>
           <p class="description">{{ state.response.description }}</p>
         </div>
