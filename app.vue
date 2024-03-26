@@ -85,28 +85,28 @@ async function searchLocal(){
       </div>
       <!--previsao do tempo -->
       <div v-if="state.hasResponse "
-        class="flex grid grid-cols-2 y-2/5 items-stretch justify-center content-center space-y-14 space-x-12">
-        <div class="weather-box">
-          <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-3/5"/>
-          <p class="temperature">{{ state.response.temperature }} Cº</p>
-          <p class="description">{{ state.response.description }}</p>
+        class="flex grid grid-cols-2 y-2/5 items-center justify-center content-center place-items-center place-content-center">
+        <div class="weather-box space-y-2 place-content-center align-middle">
+          <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-2/5"/>
+          <p class="temperature text-5xl ">{{ state.response.temperature }} Cº</p>
+          <p class="description text-xl">{{ state.response.description }}</p>
         </div>
-        <div class="weather-details mt-0 pt-0 space-y-4 place-content-start">
-          <div class="humidity">
-            <font-awesome-icon icon="fa-solid fa-water" class="icon"/>
+        <div class="weather-details space-y-4 place-content-center text-base align-middle">
+          <div class="">
+<font-awesome-icon icon="fa-solid fa-water" class="icon "/>
             <div class="text">
               <span>{{ state.response.humidity }} %</span>
               <p class="">Humidity</p>
             </div>
           </div>
-          <div class="wind">
-            <font-awesome-icon icon="fa-solid fa-wind" class="icon"/>
+          <div class="">
+            <font-awesome-icon icon="fa-solid fa-wind" class="icon "/>
             <div class="text">
               <span>{{ state.response.wind }} km/h</span>
               <p class="">Wind Speed</p>
             </div>
           </div>
-          <div class="wind">
+          <div class="">
             <font-awesome-icon icon="fa-solid fa-temperature-half" class="icon"/>
             <div class="text">
               <span>Feels {{ state.response.feels }} Cº</span>
@@ -128,6 +128,7 @@ async function searchLocal(){
   box-sizing: border-box;
   outline: none;
 }
+
 main{
   height: 100vh;
   display: flex;
@@ -135,10 +136,9 @@ main{
   justify-content: center;
   background: #06283d;
 }
+
 .container{
   position: relative;
-/*  width: 400px;*/
-/*  height: 105px;*/
   background: #fff;
   padding: 28px 32px;
   overflow: hidden;
@@ -146,6 +146,7 @@ main{
   font-family: 'Roboto', sans-serif;
   transition: 0.6s ease-out;
 }
+
 .search-box{
   width: 100%;
   height: min-content;
@@ -153,6 +154,7 @@ main{
   align-items: center;
   justify-content: space-between;
 }
+
 .search-box input{
   color: #06283D;
   width: 80%;
@@ -161,12 +163,14 @@ main{
   text-transform: uppercase;
   padding-left: 32px;
 }
+
 .search-box input::placeholder{
   font-size: 20px;
   font-weight: 500;
   color: #06283D;
   text-transform: capitalize;
 }
+
 .button-container{
   cursor: pointer;
   width: 50px;
@@ -175,58 +179,47 @@ main{
   border-radius: 50%;
   transition: 0.4s ease;
 }
+
 .button-container:hover{
   background: #06283D;
 }
+
 .button{
   color: #06283D;
   font-size: 22px;
   padding: 25%;
 }
+
 .button:hover{
   color: #fff;
 }
+
 .icon{
   position: absolute;
   color: #06283D;
   font-size: 28px;
-}
-/*.not-found{*/
-/*}*/
-.weather-box{
-/*  text-align: center;*/
-}
-
-.weather-box img{
-/*  width: 55%;*/
-/*  margin-top: 30px;*/
+  text-align: center;
+  align-items: center;
 }
 
 .weather-box .temperature{
   position: relative;
   color: #06283D;
-  font-size: 4rem;
   font-weight: 800;
-  margin-top: 30px;
-/*  margin-left: -16px;*/
 }
 
 .weather-box .temperature p{
   position: absolute;
-/*  margin-left: 4px;*/
-/*  font-size: 1.5rem;*/
 }
 
 .weather-box .description{
   color: #06283D;
-  font-size: 22px;
   font-weight: 500;
   text-transform: capitalize;
 }
 
 .text{
-  padding-left: 34px;
+  padding-left: 38px;
   color: #06283D;
-  font-size: 18px;
 }
 </style>
