@@ -4,16 +4,29 @@ const runtime = useRuntimeConfig()
 const local = ref()
 
 async function searchLocal(){
-  console.log(local.value)
-  const request = await $fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local.value}&units=metric&appid=${runtime.public.API_KEY}`)
-  console.log(request)
-}
+  await $fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local.value}&units=metric&appid=${runtime.public.API_KEY}`)
+  .then(response => {
+    console.log("RESPONSE ", response)
+    console.log("City ", response.name)
+    console.log("cod ", response.cod)
+  })
+  .catch(error => {
+    if(!error.status){
+      throw new Error('Erro na requisição')
+    } else{
+      if(error.status === 404){
+        throw new Error('City Not Found')
+      }
+    }
+  })
 
+}
 </script>
 
 <template>
   <main class="">
     <div class="container">
+      <!--pesquisar cidade-->
       <div class="search-box">
         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon"/>
         <input type="text" v-model="local" placeholder="insira o local" class=""/>
@@ -22,6 +35,11 @@ async function searchLocal(){
           class="button-container">
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="button"/>
         </div>
+      </div>
+      <!--cidade nao encontrada-->
+      <div class="not-found">
+        <img src="/images/404.png" alt="imagem de local não encontrado">
+        <p>Ooops! O local não foi encontrado....</p>
       </div>
     </div>
   </main>
@@ -97,5 +115,8 @@ main{
   position: absolute;
   color: #06283D;
   font-size: 28px;
+}
+.not-found{
+
 }
 </style>
