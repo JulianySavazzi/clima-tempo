@@ -3,6 +3,7 @@ const runtime = useRuntimeConfig()
 const state = reactive({
   hasError: false,
   hasResponse: false,
+  errorMessage: "",
   local: "",
   response: {}
 })
@@ -15,6 +16,9 @@ async function searchLocal(){
     state.response = {
       name: response.name,
       temperature: response.main.temp,
+      min: response.main.temp_min,
+      max: response.main.temp_max,
+      feels: response.main.feels_like,
       humidity: response.main.humidity,
       description: response.weather[0].description,
       wind: response.wind.speed,
@@ -38,17 +42,21 @@ async function searchLocal(){
       state.hasError = true
       if(error.status){
         if(error.status === 404){
-          throw new Error('City Not Found')
+          state.errorMessage = 'City Not Found'
+          throw new Error(state.errorMessage)
         }
         if(error.status === 401){
-          throw new Error('Unauthorized')
+          state.errorMessage = 'Unauthorized'
+          throw new Error(state.errorMessage)
         }
         if(error.status === 400){
-          throw new Error('Bad request')
+          state.errorMessage = 'Bad request'
+          throw new Error(state.errorMessage)
         }
       } else {
-          throw new Error('Erro na requisição')
-        }
+        state.errorMessage = 'Erro na requisição'
+        throw new Error(state.errorMessage)
+      }
     }
   })
 }
@@ -56,7 +64,7 @@ async function searchLocal(){
 
 <template>
   <main class="">
-    <div class="container">
+    <div class="container w-3/5 y-2/5">
       <!--pesquisar cidade-->
       <div class="search-box">
         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon"/>
@@ -72,29 +80,38 @@ async function searchLocal(){
         v-if="state.hasError && !state.hasResponse"
         class="not-found">
         <img class="py-5" src="/images/404.png" alt="imagem de local não encontrado">
-        <p class="pt-10">Ooops! O local não foi encontrado....</p>
+        <p class="">Ooops! O local não foi encontrado....</p>
+        <p class="text-xs">{{ state.errorMessage }}</p>
       </div>
       <!--previsao do tempo -->
-      <div v-if="state.hasResponse ">
+      <div v-if="state.hasResponse "
+        class="flex grid grid-cols-2 y-2/5 items-stretch justify-center content-center space-y-14 space-x-12">
         <div class="weather-box">
-          <img :src="state.response.image" alt="previsão do tempo"/>
-          <p class="temperature">{{ state.response.temperature }}</p>
+          <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-3/5"/>
+          <p class="temperature">{{ state.response.temperature }} Cº</p>
           <p class="description">{{ state.response.description }}</p>
         </div>
-        <div class="weather-details">
+        <div class="weather-details mt-0 pt-0 space-y-4 place-content-start">
           <div class="humidity">
             <font-awesome-icon icon="fa-solid fa-water" class="icon"/>
+            <div class="text">
+              <span>{{ state.response.humidity }} %</span>
+              <p class="">Humidity</p>
+            </div>
           </div>
-          <div class="text">
-            <span>{{ state.response.humidity }}</span>
-            <p class="">Humidity</p>
-          </div>
-
           <div class="wind">
             <font-awesome-icon icon="fa-solid fa-wind" class="icon"/>
             <div class="text">
-              <span>{{ state.response.wind }}</span>
+              <span>{{ state.response.wind }} km/h</span>
               <p class="">Wind Speed</p>
+            </div>
+          </div>
+          <div class="wind">
+            <font-awesome-icon icon="fa-solid fa-temperature-half" class="icon"/>
+            <div class="text">
+              <span>Feels {{ state.response.feels }} Cº</span>
+              <p class="">Min {{ state.response.min }} Cº</p>
+              <p class="">Max {{ state.response.max }} Cº</p>
             </div>
           </div>
         </div>
@@ -120,7 +137,7 @@ main{
 }
 .container{
   position: relative;
-  width: 400px;
+/*  width: 400px;*/
 /*  height: 105px;*/
   background: #fff;
   padding: 28px 32px;
@@ -177,12 +194,12 @@ main{
 /*.not-found{*/
 /*}*/
 .weather-box{
-  text-align: center;
+/*  text-align: center;*/
 }
 
 .weather-box img{
-  width: 60%;
-  margin-top: 30px;
+/*  width: 55%;*/
+/*  margin-top: 30px;*/
 }
 
 .weather-box .temperature{
@@ -191,13 +208,13 @@ main{
   font-size: 4rem;
   font-weight: 800;
   margin-top: 30px;
-  margin-left: -16px;
+/*  margin-left: -16px;*/
 }
 
-.weather-box .temperature span{
+.weather-box .temperature p{
   position: absolute;
-  margin-left: 4px;
-  font-size: 1.5rem;
+/*  margin-left: 4px;*/
+/*  font-size: 1.5rem;*/
 }
 
 .weather-box .description{
