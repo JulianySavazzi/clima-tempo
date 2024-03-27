@@ -8,9 +8,10 @@ Aplicação web para mostrar a previsão do tempo de acordo com a localização 
 - Node
 
 ## O que pode ser melhorado:
-- Adicionar uma caixa de seleção com a lista de locais disponíveis;
-- Usar permissão do dispositivo para acessar a localização do usuário para mostrar a previsão no local atual;
-- Colocar atualização da previsão automaticamente em tempo real;
+[ ] Adicionar uma caixa de seleção com a lista de locais disponíveis;
+[ ] Usar permissão do dispositivo para acessar a localização do usuário para mostrar a previsão no local atual;
+[ ] Colocar atualização da previsão automaticamente em tempo real;
+[ ] Utilizar a geocode api;
 
 ### Nuxt 3 Minimal Starter
 
@@ -55,4 +56,5 @@ npm run preview
 - [Font Awesome](https://docs.fontawesome.com/web/use-with/vue/use-with/#nuxt)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/nuxtjs)
 - [OpenWeather API](https://openweathermap.org/api)
+- [Geocode API](https://openweathermap.org/api/geocoding-api)
 - [Como utilizar o fetch](https://www.dio.me/articles/como-utilizar-o-metodo-fetch)
