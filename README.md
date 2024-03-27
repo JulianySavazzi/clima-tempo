@@ -8,10 +8,10 @@ Aplicação web para mostrar a previsão do tempo de acordo com a localização 
 - Node
 
 ## O que pode ser melhorado:
-[] Adicionar uma caixa de seleção com a lista de locais disponíveis;
-[] Usar permissão do dispositivo para acessar a localização do usuário para mostrar a previsão no local atual;
-[] Colocar atualização da previsão automaticamente em tempo real;
-[] Utilizar a geocode api;
+- [ ] Adicionar uma caixa de seleção com a lista de locais disponíveis;
+- [ ] Usar permissão do dispositivo para acessar a localização do usuário para mostrar a previsão no local atual;
+- [ ] Colocar atualização da previsão automaticamente em tempo real;
+- [ ] Utilizar a geocode api;
 
 ### Nuxt 3 Minimal Starter
 
