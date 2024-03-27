@@ -64,11 +64,11 @@ async function searchLocal(){
 
 <template>
   <main class="grid-cols-1">
-    <div class="container w-3/5 y-2/5">
+    <div class="container w-96 lg:w-1/3 y-2/5">
       <!--pesquisar cidade-->
       <div class="search-box">
         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon"/>
-        <input type="text" v-model="state.local" placeholder="insert the local" class=""/>
+        <input type="text" v-model="state.local" placeholder="insert the local" class="text-left"/>
         <div id="search-local"
           @click="searchLocal"
           class="button-container">
@@ -85,31 +85,31 @@ async function searchLocal(){
       </div>
       <!--previsao do tempo -->
       <div v-if="state.hasResponse "
-        class="flex grid grid-cols-2 y-2/5 items-center justify-center content-center place-items-center place-content-center">
+        class="flex grid grid-cols-2 y-1/4 items-center justify-center content-center place-items-center place-content-center">
         <!--weather-box-->
         <div class="weather-box space-y-2 place-content-center align-middle">
           <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-full items-center"/>
-          <p class="temperature text-5xl items-center px-auto ">{{ state.response.temperature }} Cº</p>
+          <p class="temperature text-4xl items-center px-auto ">{{ state.response.temperature }} Cº</p>
           <p class="description text-xl">{{ state.response.description }}</p>
         </div>
         <!--weather-details-->
-        <div class="weather-details space-y-4 place-content-center text-base align-middle">
-          <div class="">
-<font-awesome-icon icon="fa-solid fa-water" class="icon "/>
+        <div class="weather-details space-y-8 place-content-center text-lg align-middle h-auto w-full">
+          <div class="flex items-center justify-items-center content-center">
+            <font-awesome-icon icon="fa-solid fa-water" class="icon w-auto"/>
             <div class="text">
               <span>{{ state.response.humidity }} %</span>
               <p class="">Humidity</p>
             </div>
           </div>
-          <div class="">
-            <font-awesome-icon icon="fa-solid fa-wind" class="icon "/>
+          <div class="flex items-center justify-items-center content-center">
+            <font-awesome-icon icon="fa-solid fa-wind" class="icon w-auto"/>
             <div class="text">
-              <span>{{ state.response.wind }} km/h</span>
+              <span class="">{{ state.response.wind }} km/h</span>
               <p class="">Wind Speed</p>
             </div>
           </div>
-          <div class="">
-            <font-awesome-icon icon="fa-solid fa-temperature-half" class="icon"/>
+          <div class="flex items-center justify-items-center content-center">
+            <font-awesome-icon icon="fa-solid fa-temperature-half" class="icon w-auto"/>
             <div class="text">
               <span>Feels {{ state.response.feels }} Cº</span>
               <p class="">Min {{ state.response.min }} Cº</p>
@@ -199,6 +199,7 @@ main{
 .icon{
   position: absolute;
   color: #06283D;
+  margin-left: 8px;
   font-size: 28px;
   text-align: center;
   align-items: center;
@@ -211,11 +212,6 @@ main{
   text-align: center;
 }
 
-/*.weather-box .temperature p{*/
-/*!*  position: absolute;*!*/
-
-/*}*/
-
 .weather-box .description{
   color: #06283D;
   font-weight: 500;
@@ -224,7 +220,8 @@ main{
 }
 
 .text{
-  padding-left: 38px;
+/*  padding-left: 38px;*/
+  margin-left: 50px;
   color: #06283D;
 }
 </style>
