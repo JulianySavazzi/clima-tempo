@@ -63,12 +63,12 @@ async function searchLocal(){
 </script>
 
 <template>
-  <main class="">
+  <main class="grid-cols-1">
     <div class="container w-3/5 y-2/5">
       <!--pesquisar cidade-->
       <div class="search-box">
         <font-awesome-icon icon="fa-solid fa-location-dot" class="icon"/>
-        <input type="text" v-model="state.local" placeholder="insira o local" class=""/>
+        <input type="text" v-model="state.local" placeholder="insert the local" class=""/>
         <div id="search-local"
           @click="searchLocal"
           class="button-container">
@@ -86,11 +86,13 @@ async function searchLocal(){
       <!--previsao do tempo -->
       <div v-if="state.hasResponse "
         class="flex grid grid-cols-2 y-2/5 items-center justify-center content-center place-items-center place-content-center">
+        <!--weather-box-->
         <div class="weather-box space-y-2 place-content-center align-middle">
-          <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-2/5"/>
-          <p class="temperature text-5xl ">{{ state.response.temperature }} Cº</p>
+          <img :src="state.response.image" alt="previsão do tempo" class="h-auto w-full items-center"/>
+          <p class="temperature text-5xl items-center px-auto ">{{ state.response.temperature }} Cº</p>
           <p class="description text-xl">{{ state.response.description }}</p>
         </div>
+        <!--weather-details-->
         <div class="weather-details space-y-4 place-content-center text-base align-middle">
           <div class="">
 <font-awesome-icon icon="fa-solid fa-water" class="icon "/>
@@ -203,19 +205,22 @@ main{
 }
 
 .weather-box .temperature{
-  position: relative;
+/*  position: relative;*/
   color: #06283D;
   font-weight: 800;
+  text-align: center;
 }
 
-.weather-box .temperature p{
-  position: absolute;
-}
+/*.weather-box .temperature p{*/
+/*!*  position: absolute;*!*/
+
+/*}*/
 
 .weather-box .description{
   color: #06283D;
   font-weight: 500;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .text{
