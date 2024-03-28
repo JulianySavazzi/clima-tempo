@@ -97,23 +97,23 @@ async function searchLocal(){
           <div class="flex items-center justify-items-center content-center">
             <font-awesome-icon icon="fa-solid fa-water" class="icon w-auto"/>
             <div class="text">
-              <span>{{ state.response.humidity }} %</span>
+              <span>{{ Math.round(state.response.humidity) }} %</span>
               <p class="">Humidity</p>
             </div>
           </div>
           <div class="flex items-center justify-items-center content-center">
             <font-awesome-icon icon="fa-solid fa-wind" class="icon w-auto"/>
             <div class="text">
-              <span class="">{{ state.response.wind }} km/h</span>
+              <span class="">{{ Math.round(state.response.wind) }} km/h</span>
               <p class="">Wind Speed</p>
             </div>
           </div>
           <div class="flex items-center justify-items-center content-center">
             <font-awesome-icon icon="fa-solid fa-temperature-half" class="icon w-auto"/>
             <div class="text">
-              <span>Feels {{ state.response.feels }} Cº</span>
-              <p class="">Min {{ state.response.min }} Cº</p>
-              <p class="">Max {{ state.response.max }} Cº</p>
+              <span>Feels {{ Math.round(state.response.feels) }} Cº</span>
+              <p class="">Min {{ Math.round(state.response.min) }} Cº</p>
+              <p class="">Max {{ Math.round(state.response.max) }} Cº</p>
             </div>
           </div>
         </div>
