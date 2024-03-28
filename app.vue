@@ -29,6 +29,8 @@ async function searchLocal(){
       break
       case "Rain": state.response.image = "/images/rain.png"
       break
+      case "Drizzle": state.response.image = "/images/rain.png"
+      break
       case "Mist": state.response.image = "/images/mist.png"
       break
       case "Clear": state.response.image = "/images/clear.png"
